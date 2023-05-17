@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'Asus Rog';
+    src: url('./font/AsusRog-Regular.eot');
+    src: url('./font/AsusRog-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./font/AsusRog-Regular.woff2') format('woff2'),
+        url('./font/AsusRog-Regular.woff') format('woff'),
+        url('./font/AsusRog-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.your-time {
+    font-size: 40px;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+    color: rgb(211, 0, 0);
+    text-align: center;
+    font-family: 'Asus Rog';
+}
+
+#time {
+    font-size: 35px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+input:focus,
+button:focus {
+    /* border: 2px solid #4fbe4a; */
+    border: 2px solid #ff5454;
+    border-radius: 3px;
+    outline: none;
+}
+
+div.main {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    transform: translateY(-150px);
+}
+
+input {
+    padding: 7px 20px;
+    font-size: 14px;
+    color: black;
+    font-weight: 500;
+    margin: 5px;
+}
+
+input::placeholder {
+    font-size: 14px;
+    color: black;
+    font-weight: 500;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+}
+
+button {
+    margin: 15px 0;
+    width: 100%;
+    padding: 15px;
+    font-size: 15px;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: rgb(255, 84, 84);
+    border: 2px solid rgb(255, 84, 84);
+    border-radius: 3px;
+    transition: 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: transparent;
+    color: rgb(255, 84, 84);
+}

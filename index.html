@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Time</title>
+  <link rel="icon" type="image/x-icon" href="./images/icon.ico">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- <body onload="onLoadFun();"> -->
+
+<body>
+  <div class="main">
+    <div class="your-time">What's you time ?</div>
+    <div id="time">🫣</div>
+    <form method="get" onsubmit="return calc()">
+      <input id="effectiveH" type="number" placeholder="Effective hours" autofocus />
+      <input id="effectiveM" type="number" placeholder="Effective mins" /><br />
+      <input id="lastpunchH" type="number" placeholder="Last punch hour" />
+      <input id="lastpunchM" type="number" placeholder="Last punch min" /><br />
+      <button type="submit" value="Calculate">Find</button>
+    </form>
+  </div>
+</body>
+<script>
+  function onLoadFun() {
+    window.open("https://yudiz.keka.com/#/me/attendance/logs", "_target");
+  }
+  const calc = () => {
+    const effectiveHours = parseInt(
+      document.getElementById("effectiveH").value
+    );
+    const effectiveMin = parseInt(
+      document.getElementById("effectiveM").value
+    );
+    const lastHours = parseInt(document.getElementById("lastpunchH").value);
+    const lastMin = parseInt(document.getElementById("lastpunchM").value);
+    let remainingHours = 7 - effectiveHours + lastHours;
+    let remainingMin = 60 - effectiveMin + lastMin;
+    if (remainingMin >= 60) {
+      remainingHours++;
+      remainingMin = Math.abs(60 - remainingMin);
+    }
+
+    // updated line start
+    // remainingHours = remainingHours > 12 ? remainingHours - 12 : remainingHours
+    // updated line end
+
+    const today = new Date();
+    const currentHours = today.getHours() - 12;
+    const currentMin = today.getMinutes();
+
+
+    if (currentHours >= remainingHours && currentMin >= remainingMin) {
+      document.getElementById("time").innerHTML = "🤩🥳";
+    } else {
+      if (remainingMin <= 9) remainingMin = "0" + remainingMin
+      if (remainingHours <= 6) {
+        if (remainingMin >= 0 && remainingMin < 20) remainingMin = remainingMin + "🥳";
+        else if (remainingMin >= 20 && remainingMin < 30) remainingMin = remainingMin + "😎";
+        else if (remainingMin >= 30 && remainingMin < 40) remainingMin = remainingMin + "😌";
+        else if (remainingMin >= 40 && remainingMin < 50) remainingMin = remainingMin + "😐";
+        else if (remainingMin >= 50 && remainingMin < 60) remainingMin = remainingMin + "😒";
+      }
+      else {
+        if (remainingMin >= 0 && remainingMin < 3) remainingMin = remainingMin + "😔";
+        else if (remainingMin >= 3 && remainingMin < 6) remainingMin = remainingMin + "😣";
+        else if (remainingMin >= 6 && remainingMin < 9) remainingMin = remainingMin + "😩";
+        else if (remainingMin >= 9 && remainingMin < 15) remainingMin = remainingMin + "😨";
+        else if (remainingMin >= 15 && remainingMin < 60) remainingMin = remainingMin + "😱";
+      }
+      document.getElementById("time").innerHTML = remainingHours + ":" + remainingMin;
+      document.getElementById("time").style.color = "#ff5454";
+    }
+
+    return false;
+  };
+</script>
+
+</html>
