@@ -10,13 +10,8 @@
     font-display: swap;
 }
 
-.your-time {
-    font-size: 40px;
-    text-transform: capitalize;
-    letter-spacing: 1px;
-    color: rgb(211, 0, 0);
-    text-align: center;
-    font-family: 'Asus Rog';
+body {
+    background: #191919;
 }
 
 #time {
@@ -29,9 +24,11 @@
 input:focus,
 button:focus {
     /* border: 2px solid #4fbe4a; */
-    border: 2px solid #ff5454;
+    border: 2px solid #666666;
     border-radius: 3px;
     outline: none;
+    background-color: transparent;
+    color: white;
 }
 
 div.main {
@@ -45,16 +42,19 @@ div.main {
 }
 
 input {
-    padding: 7px 20px;
+    padding: 10px 20px;
     font-size: 14px;
-    color: black;
     font-weight: 500;
     margin: 5px;
+    background-color: transparent;
+    color: white;
+    border-color: #ffffff1e;
+    border-radius: 5px;
 }
 
 input::placeholder {
     font-size: 14px;
-    color: black;
+    color: #a6a6a6;
     font-weight: 500;
     text-transform: capitalize;
     letter-spacing: 1px;
@@ -65,17 +65,78 @@ button {
     width: 100%;
     padding: 15px;
     font-size: 15px;
-    color: white;
+    color: rgb(185, 185, 185);
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    background-color: rgb(255, 84, 84);
-    border: 2px solid rgb(255, 84, 84);
+    background-color: #414141;
+    border: 2px solid #414141;
     border-radius: 3px;
     transition: 0.3s ease-in-out;
 }
 
 button:hover {
     background-color: transparent;
-    color: rgb(255, 84, 84);
+}
+
+
+
+/*  clock style */
+
+
+.clockbox,
+#clock {
+    width: 150px;
+    height: 150px;
+}
+
+/* Clock styles */
+.circle {
+    fill: none;
+    stroke: #474747;
+    stroke-width: 9;
+    stroke-miterlimit: 10;
+}
+
+.mid-circle {
+    fill: #9e9e9e;
+}
+
+.hour-marks {
+    fill: none;
+    stroke: #474747;
+    stroke-width: 15;
+    stroke-miterlimit: 10;
+}
+
+.hour-hand {
+    fill: none;
+    stroke: #707070;
+    stroke-width: 17;
+    stroke-miterlimit: 10;
+}
+
+.minute-hand {
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 11;
+    stroke-miterlimit: 10;
+}
+
+.second-hand {
+    fill: none;
+    stroke: red;
+    stroke-width: 7;
+    stroke-miterlimit: 10;
+}
+
+.sizing-box {
+    fill: none;
+}
+
+#hour,
+#minute,
+#second {
+    transform-origin: 300px 300px;
+    transition: transform 0.5s ease-in-out;
 }

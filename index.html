@@ -13,9 +13,33 @@
 <!-- <body onload="onLoadFun();"> -->
 
 <body>
+
+  
+  
   <div class="main">
-    <div class="your-time">What's your time ?</div>
-    <div id="time">🫣</div>
+    <div class="clockbox">
+      <svg id="clock" xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
+        <g id="face">
+          <circle class="circle" cx="300" cy="300" r="253.9" />
+          <path class="hour-marks" d="M300.5 94V61M506 300.5h32M300.5 506v33M94 300.5H60M411.3 107.8l7.9-13.8M493 190.2l13-7.4M492.1 411.4l16.5 9.5M411 492.3l8.9 15.3M189 492.3l-9.2 15.9M107.7 411L93 419.5M107.5 189.3l-17.1-9.9M188.1 108.2l-9-15.6" />
+          <circle class="mid-circle" cx="300" cy="300" r="16.2" />
+        </g>
+        <g id="hour">
+          <path class="hour-hand" d="M300.5 298V142" />
+          <circle class="sizing-box" cx="300" cy="300" r="253.9" />
+        </g>
+        <g id="minute">
+          <path class="minute-hand" d="M300.5 298V67" />
+          <circle class="sizing-box" cx="300" cy="300" r="253.9" />
+        </g>
+        <g id="second">
+          <path class="second-hand" d="M300.5 350V55" />
+          <circle class="sizing-box" cx="300" cy="300" r="253.9" />
+        </g>
+      </svg>
+    </div>
+
+    <div id="time">⏰</div>
     <form method="get" onsubmit="return calc()">
       <input id="effectiveH" type="number" placeholder="Effective hours" autofocus />
       <input id="effectiveM" type="number" placeholder="Effective mins" /><br />
@@ -24,60 +48,9 @@
       <button type="submit" value="Calculate">Find</button>
     </form>
   </div>
+
+  <script src="main.js"></script>
+
 </body>
-<script>
-  function onLoadFun() {
-    window.open("https://yudiz.keka.com/#/me/attendance/logs", "_target");
-  }
-  const calc = () => {
-    const effectiveHours = parseInt(
-      document.getElementById("effectiveH").value
-    );
-    const effectiveMin = parseInt(
-      document.getElementById("effectiveM").value
-    );
-    const lastHours = parseInt(document.getElementById("lastpunchH").value);
-    const lastMin = parseInt(document.getElementById("lastpunchM").value);
-    let remainingHours = 7 - effectiveHours + lastHours;
-    let remainingMin = 60 - effectiveMin + lastMin;
-    if (remainingMin >= 60) {
-      remainingHours++;
-      remainingMin = Math.abs(60 - remainingMin);
-    }
-
-    // updated line start
-    remainingHours = remainingHours > 12 ? remainingHours - 12 : remainingHours
-    // updated line end
-
-    const today = new Date();
-    const currentHours = today.getHours() - 12;
-    const currentMin = today.getMinutes();
-
-
-    if (currentHours >= remainingHours && currentMin >= remainingMin) {
-      document.getElementById("time").innerHTML = "🤩🥳";
-    } else {
-      if (remainingMin <= 9) remainingMin = "0" + remainingMin
-      if (remainingHours <= 6) {
-        if (remainingMin >= 0 && remainingMin < 20) remainingMin = remainingMin + "🥳";
-        else if (remainingMin >= 20 && remainingMin < 30) remainingMin = remainingMin + "😎";
-        else if (remainingMin >= 30 && remainingMin < 40) remainingMin = remainingMin + "😌";
-        else if (remainingMin >= 40 && remainingMin < 50) remainingMin = remainingMin + "😐";
-        else if (remainingMin >= 50 && remainingMin < 60) remainingMin = remainingMin + "😒";
-      }
-      else {
-        if (remainingMin >= 0 && remainingMin < 3) remainingMin = remainingMin + "😔";
-        else if (remainingMin >= 3 && remainingMin < 6) remainingMin = remainingMin + "😣";
-        else if (remainingMin >= 6 && remainingMin < 9) remainingMin = remainingMin + "😩";
-        else if (remainingMin >= 9 && remainingMin < 15) remainingMin = remainingMin + "😨";
-        else if (remainingMin >= 15 && remainingMin < 60) remainingMin = remainingMin + "😱";
-      }
-      document.getElementById("time").innerHTML = remainingHours + ":" + remainingMin;
-      document.getElementById("time").style.color = "#ff5454";
-    }
-
-    return false;
-  };
-</script>
 
 </html>
